@@ -2,6 +2,12 @@ package org.model
 
 class Beach {
 
-    static constraints = {
-    }
+   String name
+   String shortDescription
+   String location
+   Float latitude
+   Float longitude
+   String city
+   String country
+   Date date
 }
