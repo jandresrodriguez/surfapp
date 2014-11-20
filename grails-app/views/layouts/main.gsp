@@ -17,11 +17,32 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300,100,400' rel='stylesheet' type='text/css'>
 		<g:layoutHead/>
 		<g:javascript library="application"/>		
 		<r:layoutResources />
+		<style type="text/css">
+			body{
+				font-family: 'Roboto', sans-serif;
+			}
+			.navbar{
+				background-color:#00004c; 
+				background-image: none; 
+				color: #fff;
+			}
+			.logo{
+				margin-top: 5px;
+			}
+		</style>
 	</head>
 	<body>
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		  <div class="container">
+		    <img src="/surfapp/static/images/logo.png" height=40 class="logo">
+		    surfapp
+		  </div>
+		</nav>
 		<g:layoutBody/>
 		<r:layoutResources />
 	</body>
