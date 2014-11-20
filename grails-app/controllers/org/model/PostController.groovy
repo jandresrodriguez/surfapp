@@ -1,8 +1,10 @@
 package org.model
 
 
-
+import org.apache.commons.io.FileUtils
 import static org.springframework.http.HttpStatus.*
+import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.springframework.web.multipart.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -36,6 +38,15 @@ class PostController {
         }
 
         postInstance.save flush:true
+        MultipartHttpServletRequest mpr = (MultipartHttpServletRequest)request;
+        CommonsMultipartFile f = (CommonsMultipartFile) mpr.getFile("file");
+        String fileName = System.currentTimeMillis() + params.title
+        String destinationFileName = "web-app/images/posts/" + fileName
+        String url = "/images/posts/" + fileName
+        byte[] userImage = f.getBytes()
+        FileUtils.writeByteArrayToFile(new File(destinationFileName), userImage)
+        postInstance.photo_url = url
+        postInstance.save()
 
         request.withFormat {
             form multipartForm {

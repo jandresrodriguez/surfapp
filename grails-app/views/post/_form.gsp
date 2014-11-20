@@ -101,3 +101,7 @@
 
 </div>
 
+<label for='fileName'>File:</label>	                
+<input id="file" type="file" name="file" />
+
+
