@@ -15,6 +15,10 @@ class BeachController {
         respond Beach.list(params), model:[beachInstanceCount: Beach.count()]
     }
 
+    def map() {
+        [beachList: Beach.list()]
+    }
+
     def show(Beach beachInstance) {
         respond beachInstance
     }
