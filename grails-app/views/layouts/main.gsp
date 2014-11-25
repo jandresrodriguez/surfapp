@@ -34,6 +34,22 @@
 			.logo{
 				margin-top: 5px;
 			}
+
+			.navbar-options {
+				float: right;
+				margin: 0;
+				padding: 0;
+			}
+
+			.navbar-options li {
+				display: inline-block;
+			}
+
+			.navbar-options a {
+				color: white;
+				text-decoration: none;
+				line-height: 45px;
+			}
 		</style>
 	</head>
 	<body>
@@ -41,6 +57,12 @@
 		  <div class="container">
 		    <img src="/surfapp/static/images/logo.png" height=40 class="logo">
 		    surfapp
+
+	    	<ul class="navbar-options">
+    			<li>
+    				<g:link controller="beach" action="map">Mapa de playas</g:link>
+    			</li>
+	    	</ul>
 		  </div>
 		</nav>
 		<g:layoutBody/>

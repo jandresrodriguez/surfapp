@@ -20,7 +20,7 @@ class BeachController {
     }
 
     def show(Beach beachInstance) {
-        respond beachInstance
+        [beachInstance: beachInstance]
     }
 
     def create() {
