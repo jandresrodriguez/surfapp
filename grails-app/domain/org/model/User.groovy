@@ -13,10 +13,11 @@ class User {
    static constraints = {
 	  username (blank:false, nullable:false, size:3..30, matches:"[a-zA-Z1-9_]+") 
 	  email (email:true)
+    country (nullable:true)
 	}
 
   String toString(){
-    return name; 
+    return first_name; 
   }
 
 }

@@ -41,7 +41,7 @@
 
 	  window.fbAsyncInit = function() {
 	  FB.init({
-	    appId      : '{your-app-id}',
+	    appId      : '1405219416361729',
 	    cookie     : true,  // enable cookies to allow the server to access 
 	                        // the session
 	    xfbml      : true,  // parse social plugins on this page
@@ -81,6 +81,14 @@
 	    console.log('Welcome!  Fetching your information.... ');
 	    FB.api('/me', function(response) {
 	    	console.log(response);
+	    	$.ajax({
+			  type: "POST",
+			  url: "/surfapp/user/save",
+			  data: { first_name: response.first_name, last_name: response.last_name, email: response.email, city: response.location.name, date_of_birth: response.birthday }
+			})
+			  .done(function( msg ) {
+			    alert( "Data Saved: " );
+			  });
 	      console.log('Successful login for: ' + response.name);
 	      document.getElementById('status').innerHTML =
 	        'Thanks for logging in, ' + response.name + '!';
