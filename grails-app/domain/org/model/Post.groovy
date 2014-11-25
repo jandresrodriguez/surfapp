@@ -20,5 +20,15 @@ class Post {
     Date lastUpdated 
     
     static constraints = {
+        title nullable: false
+        description nullable: false
+        beach nullable: false
+        author nullable: false
+
+        description maxSize: 500
+    }
+
+    String toString(){
+        return title; 
     }
 }
