@@ -6,102 +6,91 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'beach.label', default: 'Beach')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	</head>
 	<body>
-		<a href="#show-beach" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="show-beach" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1>${beachInstance?.name}</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list beach">
+			<div id="map-canvas" style="width: 100%; height: 250px"></div>
 			
-				<g:if test="${beachInstance?.city}">
-				<li class="fieldcontain">
-					<span id="city-label" class="property-label"><g:message code="beach.city.label" default="City" /></span>
-					
-						<span class="property-value" aria-labelledby="city-label"><g:fieldValue bean="${beachInstance}" field="city"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.country}">
-				<li class="fieldcontain">
-					<span id="country-label" class="property-label"><g:message code="beach.country.label" default="Country" /></span>
-					
-						<span class="property-value" aria-labelledby="country-label"><g:fieldValue bean="${beachInstance}" field="country"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.date}">
-				<li class="fieldcontain">
-					<span id="date-label" class="property-label"><g:message code="beach.date.label" default="Date" /></span>
-					
-						<span class="property-value" aria-labelledby="date-label"><g:formatDate date="${beachInstance?.date}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.latitude}">
-				<li class="fieldcontain">
-					<span id="latitude-label" class="property-label"><g:message code="beach.latitude.label" default="Latitude" /></span>
-					
-						<span class="property-value" aria-labelledby="latitude-label"><g:fieldValue bean="${beachInstance}" field="latitude"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.location}">
-				<li class="fieldcontain">
-					<span id="location-label" class="property-label"><g:message code="beach.location.label" default="Location" /></span>
-					
-						<span class="property-value" aria-labelledby="location-label"><g:fieldValue bean="${beachInstance}" field="location"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.longitude}">
-				<li class="fieldcontain">
-					<span id="longitude-label" class="property-label"><g:message code="beach.longitude.label" default="Longitude" /></span>
-					
-						<span class="property-value" aria-labelledby="longitude-label"><g:fieldValue bean="${beachInstance}" field="longitude"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="beach.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${beachInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${beachInstance?.shortDescription}">
-				<li class="fieldcontain">
-					<span id="shortDescription-label" class="property-label"><g:message code="beach.shortDescription.label" default="Short Description" /></span>
-					
-						<span class="property-value" aria-labelledby="shortDescription-label"><g:fieldValue bean="${beachInstance}" field="shortDescription"/></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form url="[resource:beachInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${beachInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+
+			<div class="fieldcontain">
+				<span class="property-value" aria-labelledby="shortDescription-label">
+					<g:fieldValue bean="${beachInstance}" field="shortDescription"/>
+				</span>
+				
+			</div>
+
+			<div class="fieldcontain">
+				<span class="property-value">
+					<g:fieldValue bean="${beachInstance}" field="location"/>, <g:fieldValue bean="${beachInstance}" field="city"/>, <span class="property-value" aria-labelledby="country-label"><g:fieldValue bean="${beachInstance}" field="country"/></span>
+				
+			</div>
 		</div>
+
+	<script type="text/javascript">
+		/* MAP */
+		var map;
+		function initialize() {
+		  var mapOptions = {
+		    zoom: 8
+		  };
+		  map = new google.maps.Map(document.getElementById('map-canvas'),
+		      mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(${beachInstance?.latitude}, ${beachInstance?.longitude}),
+				map: map,
+				title: "${beachInstance?.name}"
+			}); 
+
+
+			// Try HTML5 geolocation
+		  if(navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(function(position) {
+		      var pos = new google.maps.LatLng(position.coords.latitude,
+		                                       position.coords.longitude);
+
+		      var infowindow = new google.maps.InfoWindow({
+		        map: map,
+		        position: pos,
+		        content: 'Ubicacion actual'
+		      });
+
+		      map.setCenter(pos);
+		    }, function() {
+		      handleNoGeolocation(true);
+		    });
+		  } else {
+		    // Browser doesn't support Geolocation
+		    handleNoGeolocation(false);
+		  }
+		}
+
+		function handleNoGeolocation(errorFlag) {
+		  if (errorFlag) {
+		    var content = 'Error: The Geolocation service failed.';
+		  } else {
+		    var content = 'Error: Your browser doesn\'t support geolocation.';
+		  }
+
+		  var options = {
+		    map: map,
+		    position: new google.maps.LatLng(-34.894677, -56.165075),
+		    content: content
+		  };
+
+		  var infowindow = new google.maps.InfoWindow(options);
+		  map.setCenter(options.position);
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+	</script>
+
 	</body>
 </html>
