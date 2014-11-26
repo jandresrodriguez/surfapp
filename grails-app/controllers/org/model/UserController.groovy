@@ -25,6 +25,9 @@ class UserController {
 
     @Transactional
     def save(User userInstance) {
+        println "--------------------------"
+        println params
+        println "--------------------------"
         if (userInstance == null) {
             notFound()
             return
@@ -34,7 +37,6 @@ class UserController {
             respond userInstance.errors, view:'create'
             return
         }
-
         userInstance.save flush:true
 
         request.withFormat {

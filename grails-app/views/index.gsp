@@ -84,7 +84,7 @@
 	    	$.ajax({
 			  type: "POST",
 			  url: "/surfapp/user/save",
-			  data: { first_name: response.first_name, last_name: response.last_name, email: response.email, city: response.location.name, date_of_birth: response.birthday }
+			  data: { first_name: response.first_name, last_name: response.last_name, username:response.email, email: response.email, city: response.location.name, date_of_birth: response.birthday }
 			})
 			  .done(function( msg ) {
 			    window.location.replace("/surfapp/post/index");

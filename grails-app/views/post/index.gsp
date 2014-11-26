@@ -40,7 +40,15 @@
 				</thead>
 				<tbody>
 				<g:each in="${postInstanceList}" status="i" var="postInstance">
+					<g:if test="${postInstance?.photo_url}">
+						<li class="fieldcontain">
+							<img src="/surfapp/static/${postInstance.photo_url}">
+						</li>
+					</g:if>
+
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+						
 					
 						<td><g:link action="show" id="${postInstance.id}">${fieldValue(bean: postInstance, field: "author")}</g:link></td>
 					
