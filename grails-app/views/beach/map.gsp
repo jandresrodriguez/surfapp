@@ -1,7 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="layout" content="main">
+	</head>
+	<body>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
-<div id="map-canvas" style="width: 100%; height: 100%"></div>
+<div id="map-canvas" style="width: 100%; height: 500px"></div>
 
 <script type="text/javascript">
 	/* MAP */
@@ -67,3 +73,6 @@
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+
+</body>
+</html>

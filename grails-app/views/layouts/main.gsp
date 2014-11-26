@@ -54,18 +54,43 @@
 				text-decoration: none;
 				line-height: 45px;
 			}
+
+			.navbar-options li{
+				margin-right: 10px;
+				padding: 0 10px 0 0;
+				border-right: 1px solid #fff;
+			}
+
+			li,ul{
+				list-style-type: none;
+			}
+
+			nav a{
+				color: #fff;
+			}
+
+			nav a:hover{
+				text-decoration: none;
+				color: #fff;
+				cursor: pointer;
+			}
 		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		  <div class="container">
-		    <img src="/surfapp/static/images/logo.png" height=40 class="logo">
-		    surfapp
+		    <a href="/surfapp/post/index"><img src="/surfapp/static/images/logo.png" height=40 class="logo">
+		    surfapp</a>
 
 	    	<ul class="navbar-options">
+	    		<li><g:link controller="beach" action="create">Agregar Playa</g:link></li>
+    			<li><g:link controller="post" action="create">Agregar Post</g:link></li>
     			<li>
     				<g:link controller="beach" action="map">Mapa de playas</g:link>
     			</li>
+    			
+    			
+    				
 	    	</ul>
 		  </div>
 		</nav>

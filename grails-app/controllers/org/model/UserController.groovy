@@ -24,10 +24,13 @@ class UserController {
     }
 
     @Transactional
-    def save(User userInstance) {
-        println "--------------------------"
+    def save() {
+        User userInstance = new User(params)
+        println "***************************************"
         println params
-        println "--------------------------"
+        println userInstance
+        println "***************************************"
+
         if (userInstance == null) {
             notFound()
             return
@@ -37,7 +40,7 @@ class UserController {
             respond userInstance.errors, view:'create'
             return
         }
-        userInstance.save flush:true
+        userInstance.save(failOnError:true)
 
         request.withFormat {
             form multipartForm {

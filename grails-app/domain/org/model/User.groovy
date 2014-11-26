@@ -11,10 +11,10 @@ class User {
    Date date_of_birth
 
    static constraints = {
-	  username (blank:false, nullable:true, size:3..30, matches:"[a-zA-Z1-9_]+") 
+	  username (blank:false, nullable:true) 
 	  email (email:true)
     country (nullable:true)
-    date_of_birth (nullable:true, blank:false)
+    date_of_birth (nullable:true)
 	}
 
   String toString(){

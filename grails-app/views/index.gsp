@@ -17,7 +17,6 @@
 	    // for FB.getLoginStatus().
 	    if (response.status === 'connected') {
 	      // Logged into your app and Facebook.
-	      testAPI();
 	    } else if (response.status === 'not_authorized') {
 	      // The person is logged into Facebook, but not your app.
 	      document.getElementById('status').innerHTML = 'Please log ' +
@@ -35,7 +34,7 @@
 	  // code below.
 	  function checkLoginState() {
 	    FB.getLoginStatus(function(response) {
-	      statusChangeCallback(response);
+	      testAPI();
 	    });
 	  }
 
@@ -84,7 +83,7 @@
 	    	$.ajax({
 			  type: "POST",
 			  url: "/surfapp/user/save",
-			  data: { first_name: response.first_name, last_name: response.last_name, username:response.email, email: response.email, city: response.location.name, date_of_birth: response.birthday }
+			  data: { first_name: response.first_name, last_name: response.last_name, username:response.email, email: response.email, city: response.location.name }
 			})
 			  .done(function( msg ) {
 			    window.location.replace("/surfapp/post/index");

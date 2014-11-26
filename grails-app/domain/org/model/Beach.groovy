@@ -19,4 +19,8 @@ class Beach {
 
       shortDescription maxSize: 500
    }
+
+  String toString(){
+    return name; 
+  }
 }
