@@ -22,5 +22,15 @@ class Post {
     
     static constraints = {
         photo_url blank: true, nullable: true
+        title nullable: false
+        description nullable: false
+        beach nullable: false
+        author nullable: false
+
+        description maxSize: 500
+    }
+
+    String toString(){
+        return title; 
     }
 }

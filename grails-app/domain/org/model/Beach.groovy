@@ -10,4 +10,13 @@ class Beach {
    String city
    String country
    Date date
+
+   static constraints = {
+   	name nullable: false
+      shortDescription nullable: false
+      latitude nullable: false
+      longitude nullable: false
+
+      shortDescription maxSize: 500
+   }
 }
