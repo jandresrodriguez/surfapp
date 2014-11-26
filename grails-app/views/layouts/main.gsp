@@ -35,6 +35,10 @@
 			.logo{
 				margin-top: 5px;
 			}
+			.wrapper{
+				text-align: center;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -44,7 +48,10 @@
 		    surfapp
 		  </div>
 		</nav>
-		<g:layoutBody/>
-		<r:layoutResources />
+		<div class="wrapper">
+			<g:layoutBody/>
+			<r:layoutResources />
+		</div>
+		
 	</body>
 </html>

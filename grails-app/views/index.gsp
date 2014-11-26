@@ -87,7 +87,7 @@
 			  data: { first_name: response.first_name, last_name: response.last_name, email: response.email, city: response.location.name, date_of_birth: response.birthday }
 			})
 			  .done(function( msg ) {
-			    alert( "Data Saved: " );
+			    window.location.replace("/surfapp/post/index");
 			  });
 	      console.log('Successful login for: ' + response.name);
 	      document.getElementById('status').innerHTML =
@@ -95,28 +95,8 @@
 	    });
 	  }
 	</script>
-
-
-		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
-
-			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
-				</ul>
-			</div>
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-			</fb:login-button>
-
-			<div id="status">
-			</div>
-		</div>
+		<h1>WELCOME !</h1>
+		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+		</fb:login-button>
 	</body>
 </html>
