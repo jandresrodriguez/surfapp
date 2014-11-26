@@ -132,6 +132,14 @@
 					
 				</li>
 				</g:if>
+
+				<g:if test="${postInstance?.photo_url}">
+				<li class="fieldcontain">
+					<img src="/surfapp/static/${postInstance.photo_url}">
+					
+				</li>
+				</g:if>
+
 			
 			</ol>
 			<g:form url="[resource:postInstance, action:'delete']" method="DELETE">

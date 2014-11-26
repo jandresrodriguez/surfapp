@@ -17,7 +17,7 @@ class User {
 	}
 
   String toString(){
-    return first_name; 
+    return username; 
   }
 
 }

@@ -9,6 +9,7 @@ class Post {
     String city
     String country
     Integer rating
+    String photo_url
 
     Beach beach
 
@@ -20,5 +21,6 @@ class Post {
     Date lastUpdated 
     
     static constraints = {
+        photo_url blank: true, nullable: true
     }
 }
